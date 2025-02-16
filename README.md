@@ -7,17 +7,23 @@
 [![Documentation](https://img.shields.io/badge/Documentation-📕-blue)](https://docs.browser-use.com)
 [![WarmShao](https://img.shields.io/twitter/follow/warmshao?style=social)](https://x.com/warmshao)
 
-This project builds upon the foundation of the [browser-use](https://github.com/browser-use/browser-use), which is designed to make websites accessible for AI agents.
+This project builds on top of the [browser-use web UI](https://github.com/browser-use/web-ui) and leverages [browser-use](https://github.com/browser-use/browser-use) to automate browser tasks and send results via WhatsApp notifications. Perfect for setting up automated web monitoring, data collection, or any browser-based task where you want to receive updates on your phone.
 
-We would like to officially thank [WarmShao](https://github.com/warmshao) for his contribution to this project.
+We would like to officially thank [WarmShao](https://github.com/warmshao) for his contribution to the original browser-use web UI project, which serves as the foundation for this WhatsApp-enabled version.
 
-**WebUI:** is built on Gradio and supports most of `browser-use` functionalities. This UI is designed to be user-friendly and enables easy interaction with the browser agent.
+**Key Features:**
+- **Task Automation:** Use AI to perform complex browser-based tasks automatically
+- **WhatsApp Notifications:** Receive task results and updates directly through WhatsApp
+- **User-friendly WebUI:** Built on Gradio for easy task setup and monitoring
+- **Multiple LLM Support:** Integrated with various AI models including Google, OpenAI, Azure OpenAI, Anthropic, DeepSeek, Ollama etc.
+- **Custom Browser Support:** Use your own browser to maintain existing logins and sessions
+- **Persistent Sessions:** Option to keep browser sessions active between tasks
 
-**Expanded LLM Support:** We've integrated support for various Large Language Models (LLMs), including: Google, OpenAI, Azure OpenAI, Anthropic, DeepSeek, Ollama etc. And we plan to add support for even more models in the future.
-
-**Custom Browser Support:** You can use your own browser with our tool, eliminating the need to re-login to sites or deal with other authentication challenges. This feature also supports high-definition screen recording.
-
-**Persistent Browser Sessions:** You can choose to keep the browser window open between AI tasks, allowing you to see the complete history and state of AI interactions.
+**Use Cases:**
+- Monitor website changes and get WhatsApp notifications
+- Automate data collection with results sent to your phone
+- Schedule regular web checks with status updates
+- Receive AI analysis results via WhatsApp
 
 <video src="https://github.com/user-attachments/assets/56bc7080-f2e3-4367-af22-6bf2245ff6cb" controls="controls">Your browser does not support playing this video!</video>
 
@@ -221,7 +227,44 @@ CHROME_PERSISTENT_SESSION=true docker compose up --build
    docker compose down
    ```
 
+## Environment Setup
+1. Create a copy of the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Configure your API keys in the `.env` file:
+```bash
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key
+
+# Twilio WhatsApp Configuration
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_whatsapp_number
+```
+
+## WhatsApp Setup
+1. Create a [Twilio account](https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn) if you haven't already.
+
+2. Get your Twilio credentials:
+   - Account SID from your Twilio Console
+   - Auth Token from your Twilio Console
+   - WhatsApp-enabled Twilio phone number
+
+3. Configure WhatsApp integration in your `.env` file with the credentials from step 2.
+
+4. Test the WhatsApp integration:
+```bash
+python test_notification.py
+```
+
+You should receive a test message on your configured WhatsApp number.
+
+Note: Make sure to follow Twilio's WhatsApp Sandbox setup instructions if you're using a trial account.
+
 ## Changelog
 - [x] **2025/01/26:** Thanks to @vvincent1234. Now browser-use-webui can combine with DeepSeek-r1 to engage in deep thinking!
 - [x] **2025/01/10:** Thanks to @casistack. Now we have Docker Setup option and also Support keep browser open between tasks.[Video tutorial demo](https://github.com/browser-use/web-ui/issues/1#issuecomment-2582511750).
 - [x] **2025/01/06:** Thanks to @richard-devbot. A New and Well-Designed WebUI is released. [Video tutorial demo](https://github.com/warmshao/browser-use-webui/issues/1#issuecomment-2573393113).
+- [x] **2025/02/01:** Added WhatsApp notification support for task results
