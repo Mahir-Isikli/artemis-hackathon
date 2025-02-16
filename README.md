@@ -25,8 +25,6 @@ We would like to officially thank [WarmShao](https://github.com/warmshao) for hi
 - Schedule regular web checks with status updates
 - Receive AI analysis results via WhatsApp
 
-<video src="https://github.com/user-attachments/assets/56bc7080-f2e3-4367-af22-6bf2245ff6cb" controls="controls">Your browser does not support playing this video!</video>
-
 ## Installation Guide
 
 ### Prerequisites
